@@ -4,6 +4,12 @@ RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
+
+RUN apt-get update && apt-get install -y \
+build-essential \
+libpq-dev \
+default-mysql-client 
+
 RUN bundle install
 COPY . /myapp
 
