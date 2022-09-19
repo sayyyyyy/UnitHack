@@ -17,6 +17,17 @@ services:
     volumes:
       - ./backend:/myapp
     ports:
-      - "5000:5000"
+      - "5001:5000"
     depends_on:
       - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - ./frontend:/usr/src/app
+    command: bash -c "cd vue_app && npm run serve"
+    ports:
+      - "8080:8080"
